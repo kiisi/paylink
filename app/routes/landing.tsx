@@ -317,19 +317,19 @@ function HeroBrand() {
          <div className="relative z-10 w-full max-w-[1200px] px-6 text-center mb-16">
 
             {/* FLOATING REALISTIC TRANSACTIONS (Desktop Only) */}
-            <FloatingCard x={x1} y={y1} rotate={-6} className="top-0 left-[5%] md:left-[10%]">
+            <FloatingCard x={x1} y={y1} rotate={-6} className="-top-24 left-0 md:top-0 md:left-[10%] scale-90 md:scale-100 origin-top-left">
                <TransactionPill icon={ArrowDownLeft} name="Design Freelance" amount="+₦150,000" type="credit" />
             </FloatingCard>
 
-            <FloatingCard x={x2} y={y2} rotate={6} delay={0.2} className="top-10 right-[5%] md:right-[10%]">
+            <FloatingCard x={x2} y={y2} rotate={6} delay={0.2} className="-top-12 right-0 md:top-10 md:right-[10%] scale-90 md:scale-100 origin-top-right">
                <TransactionPill icon={ArrowDownLeft} name="Trip Contribution" amount="+₦5,000" type="credit" />
             </FloatingCard>
 
-            <FloatingCard x={x2} y={y2} rotate={-3} delay={0.4} className="bottom-[180px] left-[5%] hidden md:block">
+            <FloatingCard x={x2} y={y2} rotate={-3} delay={0.4} className="bottom-40 -left-6 md:bottom-[180px] md:left-[5%] scale-90 md:scale-100 origin-bottom-left z-10 md:z-20">
                <TransactionPill icon={Briefcase} name="Consulting Fee" amount="+₦85,000" type="credit" />
             </FloatingCard>
 
-            <FloatingCard x={x1} y={y1} rotate={4} delay={0.6} className="bottom-[220px] right-[5%] hidden md:block">
+            <FloatingCard x={x1} y={y1} rotate={4} delay={0.6} className="bottom-60 -right-6 md:bottom-[220px] md:right-[5%] scale-90 md:scale-100 origin-bottom-right z-10 md:z-20">
                <TransactionPill icon={Store} name="Store Sale #402" amount="+₦12,500" type="credit" />
             </FloatingCard>
 
@@ -354,7 +354,7 @@ function HeroBrand() {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 0.4, duration: 0.8 }}
-               className="text-[16px] md:text-[20px] text-gray-500 max-w-[320px] md:max-w-[600px] mx-auto font-medium leading-relaxed mb-10 md:mb-16"
+               className="text-[16px] md:text-[20px] text-gray-500 max-w-[320px] md:max-w-[600px] mx-auto font-medium leading-relaxed mb-14 md:mb-16"
             >
                <span className="text-gray-900 font-semibold">Create a custom link, share it, and get paid instantly.</span> <br className="hidden md:block" />
                No coding, no websites, no hassle.
