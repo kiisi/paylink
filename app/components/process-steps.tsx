@@ -44,13 +44,14 @@ export default function ProcessSteps() {
             </motion.div>
 
             {/* Desktop Timeline using CSS/SVG for the wave */}
-            <div className="hidden md:block relative h-[400px]">
+            {/* Desktop Timeline using CSS/SVG for the wave */}
+            <div className="hidden lg:block relative h-[400px]">
                 {/* SVG Wave Line */}
                 <div className="absolute inset-0">
                     <svg className="w-full h-full" viewBox="0 0 1200 200" fill="none" preserveAspectRatio="none">
                         <motion.path
                             d="M 0 85 Q 600 -25 1200 85"
-                            stroke="url(#gradient)"
+                            stroke="url(#process-gradient)"
                             strokeWidth="2"
                             fill="none"
                             initial={{ pathLength: 0 }}
@@ -59,7 +60,7 @@ export default function ProcessSteps() {
                             transition={{ duration: 2, ease: "easeInOut" }}
                         />
                         <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <linearGradient id="process-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stopColor="#3b82f6" />
                                 <stop offset="50%" stopColor="#8b5cf6" />
                                 <stop offset="100%" stopColor="#10b981" />
@@ -69,9 +70,10 @@ export default function ProcessSteps() {
                 </div>
 
                 {/* Steps */}
-                <div className="relative z-10 grid grid-cols-3 h-full">
-                    {/* Step 1 - Bottom Aligned mostly */}
-                    <div className="flex flex-col items-center pt-32"> {/* Push down */}
+                {/* Steps */}
+                <div className="relative z-10 grid grid-cols-3 h-full w-full gap-8">
+                    {/* Step 1 - Left Aligned */}
+                    <div className="flex flex-col items-center lg:items-start lg:pl-12 pt-32">
                         <motion.div
                             initial={{ scale: 0, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -90,9 +92,9 @@ export default function ProcessSteps() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.7 }}
-                            className="text-center mt-8 max-w-[280px]"
+                            className="relative text-center lg:text-left mt-8 max-w-[280px]"
                         >
-                            <div className="text-8xl font-bold text-gray-100 absolute -top-24 -left-4 -z-10 select-none">1</div>
+                            <div className="text-8xl font-bold text-gray-200 opacity-40 absolute -top-24 -left-4 select-none">1</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">Create Link</h3>
                             <p className="text-gray-500 leading-relaxed font-medium">
                                 Generate a customized payment link in seconds. Flexibly set amounts.
@@ -100,8 +102,8 @@ export default function ProcessSteps() {
                         </motion.div>
                     </div>
 
-                    {/* Step 2 - Top Aligned */}
-                    <div className="flex flex-col items-center pt-4"> {/* Pull up */}
+                    {/* Step 2 - Center Aligned */}
+                    <div className="flex flex-col items-center pt-4">
                         <motion.div
                             initial={{ scale: 0, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -120,9 +122,9 @@ export default function ProcessSteps() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 1.2 }}
-                            className="text-center mt-8 max-w-[280px]"
+                            className="relative text-center mt-8 max-w-[280px]"
                         >
-                            <div className="text-8xl font-bold text-gray-100 absolute -top-16 -right-8 -z-10 select-none">2</div>
+                            <div className="text-8xl font-bold text-gray-200 opacity-40 absolute -top-16 -right-8 select-none">2</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">Share Anywhere</h3>
                             <p className="text-gray-500 leading-relaxed font-medium">
                                 Send it via WhatsApp, Instagram, or Email. It works on any platform.
@@ -130,8 +132,8 @@ export default function ProcessSteps() {
                         </motion.div>
                     </div>
 
-                    {/* Step 3 - Bottom Aligned */}
-                    <div className="flex flex-col items-center pt-32"> {/* Push down */}
+                    {/* Step 3 - Right Aligned */}
+                    <div className="flex flex-col items-center lg:items-end lg:pr-12 pt-32">
                         <motion.div
                             initial={{ scale: 0, opacity: 0 }}
                             whileInView={{ scale: 1, opacity: 1 }}
@@ -150,9 +152,9 @@ export default function ProcessSteps() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 1.7 }}
-                            className="text-center mt-8 max-w-[280px]"
+                            className="relative text-center lg:text-right mt-8 max-w-[280px]"
                         >
-                            <div className="text-8xl font-bold text-gray-100 absolute -top-24 -left-4 -z-10 select-none">3</div>
+                            <div className="text-8xl font-bold text-gray-200 opacity-40 absolute -top-24 -left-4 select-none">3</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Paid</h3>
                             <p className="text-gray-500 leading-relaxed font-medium">
                                 Receive funds instantly into your account. Automatic notifications included.
@@ -163,7 +165,7 @@ export default function ProcessSteps() {
             </div>
 
             {/* Mobile Timeline (Vertical) */}
-            <div className="md:hidden space-y-12 relative">
+            <div className="lg:hidden space-y-12 relative">
                 <div className="absolute left-8 top-4 bottom-4 w-0.5 bg-gray-100"></div>
 
                 {timelineData.map((step, index) => (
