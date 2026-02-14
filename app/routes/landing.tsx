@@ -99,7 +99,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="rounded-xl border bg-card p-6 shadow-card transition-shadow hover:shadow-elevated"
+                className="rounded-xl border bg-card p-6 transition-shadow hover:shadow-elevated"
               >
                 <div className="mb-4 inline-flex rounded-lg bg-primary/10 p-2.5 text-primary">
                   <f.icon size={22} />
