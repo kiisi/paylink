@@ -118,6 +118,8 @@ export default function Dashboard() {
                 </div>
 
 
+
+
                 {/* COLLECTIONS SECTION */}
                 <div className="space-y-6 bg-white border border-gray-200 rounded-2xl p-6">
 
@@ -136,7 +138,7 @@ export default function Dashboard() {
                         {[1, 2].map((_, i) => (
                             <div
                                 key={i}
-                                className="bg-white border border-gray-200 rounded-xl p-6 transition"
+                                className="bg-white border border-gray-200 rounded-2xl p-6 transition"
                             >
 
                                 {/* TOP ROW */}
