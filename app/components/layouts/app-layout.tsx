@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router";
-import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu } from "lucide-react";
+import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu, BellIcon } from "lucide-react";
 import { useState } from "react";
 import Logo from "../logo";
+import { ChevronDownIcon, MenuIcon, NotificationIcon } from "../svgs";
 
 
 const navItems = [
@@ -20,35 +21,30 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <Logo />
-          <nav className="hidden items-center gap-1 md:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                  location.pathname === item.to
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                }`}
-              >
-                <item.icon size={18} />
-                {item.label}
-              </Link>
-            ))}
-            <Link
-              to="/"
-              className="ml-2 flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
-            >
-              <LogOut size={18} />
-              Logout
-            </Link>
+          <nav className="items-center gap-2 flex">
+            <button className="cursor-pointer h-[50px] w-[50px] rounded-full bg-[#f4f5f6] grid place-items-center">
+              <NotificationIcon />
+            </button>
+            <button className="cursor-pointer p-[10px] rounded-[32px] bg-[#f4f5f6] flex items-center text-[#141517] gap-2">
+              <figure className="rounded-full h-[30px] w-[30px] shrink-0">
+                <img
+                  src="/avatar.jpg"
+                  alt="Profile"
+                  className="rounded-full h-[30px] w-[30px] object-cover"
+                />
+              </figure>
+              <div
+                className="text-[14px] max-w-[90px] truncate text-left hidden md:block">
+                Kiisifelix
+              </div>
+              <ChevronDownIcon className="hidden md:block" />
+              <MenuIcon
+                // onClick={() => setMobileOpen(!mobileOpen)}
+                className="md:hidden"
+              />
+            </button>
           </nav>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-lg p-2 text-muted-foreground hover:bg-accent md:hidden"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+
         </div>
 
         {/* Mobile nav */}
@@ -59,11 +55,10 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
                 key={item.to}
                 to={item.to}
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
-                  location.pathname === item.to
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-accent"
-                }`}
+                className={`flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${location.pathname === item.to
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-accent"
+                  }`}
               >
                 <item.icon size={18} />
                 {item.label}
