@@ -21,10 +21,13 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { useNavigate } from "react-router";
 
 
 export default function Dashboard() {
+    
+    const navigate = useNavigate();
+
     return (
         <AppLayout>
             <div className="space-y-10">
@@ -40,7 +43,10 @@ export default function Dashboard() {
                         </p>
                     </div>
 
-                    <button className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-blue-700 transition text-white px-5 py-3 rounded-[24px] text-sm font-medium">
+                    <button
+                        onClick={() => navigate("/collections/create")}
+                        className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-blue-700 transition text-white px-5 py-3 rounded-[24px] text-sm font-medium"
+                    >
                         <Plus size={18} />
                         Create Collection
                     </button>
