@@ -90,7 +90,9 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
                 key={i}
                 className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
               >
-                {item.icon}
+                <div className="w-[26px] h-[26px] grid place-items-center">
+                  {item.icon}
+                </div>
                 <span className="text-sm font-medium">{item.label}</span>
               </button>
             ))}
