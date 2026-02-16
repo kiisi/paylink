@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu, BellIcon, Layers, Users } from "lucide-react";
 import { useState } from "react";
 import Logo from "../logo";
-import { ChevronDownIcon, MenuIcon, NotificationIcon } from "../svgs";
+import { ChevronDownIcon, DashboardIcon, Layers01Icon, LayersIcon, LogoutIcon, MenuIcon, NotificationIcon, SettingsIcon, UserIcon, UserMultipleIcon } from "../svgs";
 import { AnimatePresence, motion } from "framer-motion";
 
 
@@ -79,10 +79,12 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
           <nav className="p-4 space-y-2">
 
             {[
-              { label: "Dashboard", icon: <LayoutDashboard size={18} /> },
-              { label: "Collections", icon: <Layers size={18} /> },
-              { label: "Contributors", icon: <Users size={18} /> },
-              { label: "Settings", icon: <Settings size={18} /> },
+              { label: "Dashboard", icon: <DashboardIcon /> },
+              { label: "Collections", icon: <Layers01Icon /> },
+              { label: "Contributors", icon: <UserMultipleIcon /> },
+              { label: "Profile", icon: <UserIcon /> },
+              { label: "Settings", icon: <SettingsIcon /> },
+              { label: "Logout", icon: <LogoutIcon /> },
             ].map((item, i) => (
               <button
                 key={i}
