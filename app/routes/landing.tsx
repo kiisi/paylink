@@ -1,4 +1,4 @@
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/landing";
 import { Link } from "react-router";
 import {
    Link2, ArrowRight, Shield, Zap, Users, BarChart3,
