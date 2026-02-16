@@ -40,7 +40,7 @@ export default function Dashboard() {
                         </p>
                     </div>
 
-                    <button className="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-3 rounded-xl text-sm font-medium shadow-sm">
+                    <button className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-blue-700 transition text-white px-5 py-3 rounded-[24px] text-sm font-medium">
                         <Plus size={18} />
                         Create Collection
                     </button>
@@ -48,7 +48,7 @@ export default function Dashboard() {
 
                 {/* STATS GRID */}
                 <Swiper
-                    slidesPerView={1.25}
+                    slidesPerView={1.20}
                     spaceBetween={16}
                     pagination={{
                         clickable: true,
@@ -56,10 +56,13 @@ export default function Dashboard() {
                     className=""
                     breakpoints={{
                         640: {
-                            slidesPerView: 2.5,
+                            slidesPerView: 2.2,
                             spaceBetween: 20,
                         },
                         1024: {
+                            slidesPerView: 3.2,
+                        },
+                        1084: {
                             slidesPerView: 4,
                         },
                     }}

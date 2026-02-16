@@ -18,7 +18,7 @@ const Logo = ({ size = "default" }: { size?: "small" | "default" | "large" }) =>
 
   return (
     <Link to="/" className="flex items-center gap-2 font-bold tracking-tight text-primary">
-      <Link2 size={iconSize[size]} className="rotate-[-4heavy on framer motion now please lets make sure the framer is nice and properly integrated5deg]" />
+      <Link2 size={iconSize[size]} className="rotate-[-45deg]" />
       <span className={sizeClasses[size]}>Paylink</span>
     </Link>
   );
