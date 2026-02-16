@@ -13,6 +13,16 @@ import {
     Eye,
 } from "lucide-react";
 import AppLayout from "~/components/layouts/app-layout";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
+
 
 export default function Dashboard() {
     return (
@@ -30,96 +40,115 @@ export default function Dashboard() {
                         </p>
                     </div>
 
-                    <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-3 rounded-xl text-sm font-medium shadow-sm">
+                    <button className="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-3 rounded-xl text-sm font-medium shadow-sm">
                         <Plus size={18} />
                         Create Collection
                     </button>
                 </div>
 
                 {/* STATS GRID */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    {/* TOTAL COLLECTED */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
-                        <div className="flex items-center justify-between">
-                            <div className="p-3 rounded-xl bg-blue-50">
-                                <Wallet className="text-blue-600" size={20} />
+                <Swiper
+                    slidesPerView={1.25}
+                    spaceBetween={16}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    className=""
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2.5,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                        },
+                    }}
+                >
+                    <SwiperSlide>
+                        {/* TOTAL COLLECTED */}
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
+                            <div className="flex items-center justify-between">
+                                <div className="p-3 rounded-xl bg-blue-50">
+                                    <Wallet className="text-blue-600" size={20} />
+                                </div>
+                                <div className="flex items-center text-green-600 text-sm font-medium gap-1">
+                                    <TrendingUp size={16} />
+                                    +12.4%
+                                </div>
                             </div>
-                            <div className="flex items-center text-green-600 text-sm font-medium gap-1">
-                                <TrendingUp size={16} />
-                                +12.4%
+
+                            <div className="mt-6">
+                                <p className="text-sm text-gray-500">Total Collected</p>
+                                <h2 className="text-2xl font-semibold mt-1 text-gray-900">
+                                    ₦1,250,000
+                                </h2>
                             </div>
                         </div>
-
-                        <div className="mt-6">
-                            <p className="text-sm text-gray-500">Total Collected</p>
-                            <h2 className="text-2xl font-semibold mt-1 text-gray-900">
-                                ₦1,250,000
-                            </h2>
-                        </div>
-                    </div>
-
-                    {/* ACTIVE COLLECTIONS */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
-                        <div className="flex items-center justify-between">
-                            <div className="p-3 rounded-xl bg-purple-50">
-                                <Layers className="text-purple-600" size={20} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        {/* ACTIVE COLLECTIONS */}
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
+                            <div className="flex items-center justify-between">
+                                <div className="p-3 rounded-xl bg-purple-50">
+                                    <Layers className="text-purple-600" size={20} />
+                                </div>
+                                <span className="text-sm text-gray-500">
+                                    4 running
+                                </span>
                             </div>
-                            <span className="text-sm text-gray-500">
-                                4 running
-                            </span>
-                        </div>
 
-                        <div className="mt-6">
-                            <p className="text-sm text-gray-500">Active Collections</p>
-                            <h2 className="text-2xl font-semibold mt-1 text-gray-900">
-                                4
-                            </h2>
-                        </div>
-                    </div>
-
-                    {/* CLOSED COLLECTIONS */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
-                        <div className="flex items-center justify-between">
-                            <div className="p-3 rounded-xl bg-green-50">
-                                <CheckCircle2 className="text-green-600" size={20} />
+                            <div className="mt-6">
+                                <p className="text-sm text-gray-500">Active Collections</p>
+                                <h2 className="text-2xl font-semibold mt-1 text-gray-900">
+                                    4
+                                </h2>
                             </div>
-                            <span className="text-sm text-gray-500">
-                                Lifetime
-                            </span>
                         </div>
-
-                        <div className="mt-6">
-                            <p className="text-sm text-gray-500">Closed Collections</p>
-                            <h2 className="text-2xl font-semibold mt-1 text-gray-900">
-                                12
-                            </h2>
-                        </div>
-                    </div>
-
-                    {/* CONTRIBUTORS */}
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
-                        <div className="flex items-center justify-between">
-                            <div className="p-3 rounded-xl bg-indigo-50">
-                                <Users className="text-indigo-600" size={22} />
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        {/* CLOSED COLLECTIONS */}
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
+                            <div className="flex items-center justify-between">
+                                <div className="p-3 rounded-xl bg-green-50">
+                                    <CheckCircle2 className="text-green-600" size={20} />
+                                </div>
+                                <span className="text-sm text-gray-500">
+                                    Lifetime
+                                </span>
                             </div>
-                            <span className="text-sm text-gray-500">
-                                Contributors
-                            </span>
-                        </div>
 
-                        <div className="mt-6">
-                            <p className="text-sm text-gray-500">Total Contributors</p>
-                            <h2 className="text-2xl font-semibold mt-1 text-gray-900">
-                                186
-                            </h2>
+                            <div className="mt-6">
+                                <p className="text-sm text-gray-500">Closed Collections</p>
+                                <h2 className="text-2xl font-semibold mt-1 text-gray-900">
+                                    12
+                                </h2>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        {/* CONTRIBUTORS */}
+                        <div className="bg-white border border-gray-200 rounded-xl p-6 transition">
+                            <div className="flex items-center justify-between">
+                                <div className="p-3 rounded-xl bg-indigo-50">
+                                    <Users className="text-indigo-600" size={22} />
+                                </div>
+                                <span className="text-sm text-gray-500">
+                                    Contributors
+                                </span>
+                            </div>
 
+                            <div className="mt-6">
+                                <p className="text-sm text-gray-500">Total Contributors</p>
+                                <h2 className="text-2xl font-semibold mt-1 text-gray-900">
+                                    186
+                                </h2>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                </Swiper>
 
                 {/* COLLECTIONS SECTION */}
-                <div className="space-y-6 bg-white border border-gray-200 rounded-2xl p-6">
+                <div className="space-y-6 rounded-2xl">
 
                     <div className="flex items-center justify-between">
                         <h2 className="text-xl font-semibold text-gray-900">

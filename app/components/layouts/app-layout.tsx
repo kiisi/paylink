@@ -3,6 +3,7 @@ import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu } from "l
 import { useState } from "react";
 import Logo from "../logo";
 
+
 const navItems = [
   { label: "Dashboard", to: "/dashboard", icon: LayoutDashboard },
   { label: "Create Collection", to: "/create", icon: PlusCircle },
@@ -17,7 +18,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background">
       {/* Top Navbar */}
       <header className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
           <Logo />
           <nav className="hidden items-center gap-1 md:flex">
             {navItems.map((item) => (
@@ -80,7 +81,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
         )}
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-6">{children}</main>
+      <main className="mx-auto max-w-7xl px-5 py-6">{children}</main>
     </div>
   );
 };
