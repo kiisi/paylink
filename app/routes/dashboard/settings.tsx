@@ -9,10 +9,10 @@ import { Separator } from "~/components/ui/separator";
 import { useToast } from "~/hooks/use-toast";
 
 const Settings = () => {
-  const [name, setName] = useState("John Doe");
-  const [businessName, setBusinessName] = useState("Doe Collections");
-  const [bankName, setBankName] = useState("Equity Bank");
-  const [accountNumber, setAccountNumber] = useState("012 345 6789");
+  const [name, setName] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [bankName, setBankName] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -26,45 +26,81 @@ const Settings = () => {
   };
 
   return (
-    <AppLayout>
+    <AppLayout className="bg-[#f4f5f6]">
       <h1 className="mb-1 text-2xl font-bold text-foreground">Settings</h1>
       <p className="mb-6 text-sm text-muted-foreground">Manage your profile and payout details</p>
 
-      <div className="mx-auto max-w-lg space-y-8">
+      <div className="space-y-8 bg-white p-5 lg:p-6 rounded-[12px] mb-[24px]">
         {/* Profile */}
         <section>
           <h2 className="mb-4 text-lg font-semibold text-foreground">Profile</h2>
-          <div className="space-y-4">
+          <div className="space-y-5">
             <div>
-              <Label htmlFor="orgName">Organizer Name</Label>
+              <Label htmlFor="orgName">First Name</Label>
               <Input id="orgName" value={name} onChange={(e) => setName(e.target.value)} className="mt-1" />
+            </div>
+            <div>
+              <Label htmlFor="orgLastName">Last Name</Label>
+              <Input
+                id="orgLastName"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="mt-1"
+              />
             </div>
             <div>
               <Label htmlFor="bizName">Business / Group Name</Label>
               <Input id="bizName" value={businessName} onChange={(e) => setBusinessName(e.target.value)} className="mt-1" />
             </div>
+            <Button onClick={handleSave} className="w-full rounded-[24px] gap-2" disabled={saving}>
+              {saving ? "Saving..." : "Save Changes"}
+            </Button>
           </div>
         </section>
+      </div>
 
-        <Separator />
-
+      <div className="space-y-8 bg-white p-5 lg:p-6 rounded-[12px]">
         {/* Payout */}
         <section>
-          <h2 className="mb-4 text-lg font-semibold text-foreground">Payout Details</h2>
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="bank">Bank Name</Label>
-              <Input id="bank" value={bankName} onChange={(e) => setBankName(e.target.value)} className="mt-1" />
-            </div>
+          <h2 className="mb-4 text-lg font-semibold text-foreground">
+            Banking Information
+          </h2>
+          <div className="space-y-6">
             <div>
               <Label htmlFor="account">Account Number</Label>
-              <Input id="account" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="mt-1" />
+              <Input
+                id="account"
+                placeholder="012345678"
+                value={accountNumber}
+                onChange={(e) => setAccountNumber(e.target.value)}
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="bank">Select Bank</Label>
+              <Input
+                id="bank"
+                placeholder="Select Bank"
+                value={bankName}
+                onChange={(e) => setBankName(e.target.value)}
+                className="mt-1"
+              />
+            </div>
+            <div>
+              <Label htmlFor="bank">Account Name</Label>
+              <Input
+                id="bank"
+                placeholder="Account Name"
+                value={bankName}
+                onChange={(e) => setBankName(e.target.value)}
+                className="mt-1"
+              />
             </div>
           </div>
         </section>
 
-        <Button onClick={handleSave} className="w-full gap-2" disabled={saving}>
-          <Save size={16} /> {saving ? "Saving..." : "Save Changes"}
+        <Button onClick={handleSave} className="w-full gap-2 rounded-[24px]" disabled={saving}>
+          {saving ? "Saving..." : "Save Changes"}
         </Button>
 
         <Separator />

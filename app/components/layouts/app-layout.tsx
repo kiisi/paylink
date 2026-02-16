@@ -1,9 +1,10 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu, BellIcon, Layers, Users } from "lucide-react";
 import { useState } from "react";
 import Logo from "../logo";
 import { ChevronDownIcon, DashboardIcon, Layers01Icon, LayersIcon, LogoutIcon, MenuIcon, NotificationIcon, SettingsIcon, UserIcon, UserMultipleIcon } from "../svgs";
 import { AnimatePresence, motion } from "framer-motion";
+import { cn } from "~/lib/utils";
 
 
 const navItems = [
@@ -12,17 +13,19 @@ const navItems = [
   { label: "Settings", to: "/settings", icon: Settings },
 ];
 
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
+const AppLayout = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   const location = useLocation();
   const [open, setMobileOpen] = useState(false);
 
   const onClose = () => setMobileOpen(false);
 
+  const navigate = useNavigate();
+
   return (
-    <div className="h-screen overflow-y-auto bg-background overflow-x-hidden">
+    <div className={cn("h-screen overflow-y-auto bg-background overflow-x-hidden", className)}>
       {/* Top Navbar */}
       <header className="sticky top-0 z-50 border-b bg-card/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
+        <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5">
           <Logo />
           <nav className="items-center gap-2 flex">
             <button className="cursor-pointer h-[50px] w-[50px] rounded-full bg-[#f4f5f6] grid place-items-center">
@@ -61,7 +64,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* Sidebar Panel */}
         <div
-          className={`fixed top-0 right-0 h-screen w-[280px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-full"
+          className={`fixed top-0 right-0 h-screen w-[260px] bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${open ? "translate-x-0" : "translate-x-full"
             }`}
         >
           {/* Header */}
@@ -77,16 +80,19 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Navigation */}
           <nav className="p-4 space-y-2">
-
             {[
-              { label: "Dashboard", icon: <DashboardIcon /> },
-              { label: "Collections", icon: <Layers01Icon /> },
-              { label: "Contributors", icon: <UserMultipleIcon /> },
-              { label: "Profile", icon: <UserIcon /> },
-              { label: "Settings", icon: <SettingsIcon /> },
-              { label: "Logout", icon: <LogoutIcon /> },
+              { label: "Dashboard", icon: <DashboardIcon />, link: "/dashboard" },
+              { label: "Collections", icon: <Layers01Icon />, link: "/collections" },
+              { label: "Contributors", icon: <UserMultipleIcon />, link: "/contributors" },
+              { label: "Profile", icon: <UserIcon />, link: "/profile" },
+              { label: "Settings", icon: <SettingsIcon />, link: "/settings" },
+              { label: "Logout", icon: <LogoutIcon />, link: "/logout" },
             ].map((item, i) => (
               <button
+                onClick={() => {
+                  onClose();
+                  navigate(item.link);
+                }}
                 key={i}
                 className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
               >
@@ -96,7 +102,6 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
                 <span className="text-sm font-medium">{item.label}</span>
               </button>
             ))}
-
           </nav>
         </div>
       </header>
