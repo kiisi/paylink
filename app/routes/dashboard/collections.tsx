@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "~/components/ui/input";
 import { Card, CardContent } from "~/components/ui/card";
 import { Badge } from "~/components/ui/badge";
+import AppLayout from "~/components/layouts/app-layout";
 
 const collections = [
   { id: "1", name: "Class Dues — 400L", description: "Final year class dues collection", collected: "₦85,000", target: "₦150,000", contributors: 17, status: "active", date: "Dec 15, 2025" },
@@ -24,94 +25,95 @@ export default function Collections() {
   });
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-2xl font-bold text-foreground">Collections</h1>
-        <Link
-          to="/collections/new"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
-        >
-          <Plus className="h-4 w-4" />
-          New Collection
-        </Link>
-      </div>
-
-      {/* Search & Filter */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Search collections..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="pl-9"
-          />
-        </div>
-        <div className="flex gap-2">
-          {(["all", "active", "closed"] as const).map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-3 py-2 rounded-lg text-xs font-medium capitalize transition-colors ${
-                filter === f
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-accent"
-              }`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Collection List */}
-      <div className="space-y-3">
-        {filtered.map((col) => (
-          <Link key={col.id} to={`/collections/${col.id}`}>
-            <Card className="shadow-card border-border hover:shadow-card-hover transition-shadow cursor-pointer mb-3">
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between mb-2">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <p className="text-sm font-semibold text-foreground truncate">{col.name}</p>
-                      <Badge
-                        variant={col.status === "active" ? "default" : "secondary"}
-                        className={`text-[10px] ${col.status === "active" ? "bg-success text-success-foreground" : ""}`}
-                      >
-                        {col.status}
-                      </Badge>
-                    </div>
-                    <p className="text-xs text-muted-foreground">{col.description}</p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between text-xs text-muted-foreground mt-3">
-                  <span>{col.contributors} contributors</span>
-                  <span className="font-semibold text-foreground">{col.collected} / {col.target}</span>
-                </div>
-                <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden mt-2">
-                  <div
-                    className="h-full gradient-primary rounded-full"
-                    style={{
-                      width: `${Math.min(
-                        (parseInt(col.collected.replace(/[₦,]/g, "")) /
-                          parseInt(col.target.replace(/[₦,]/g, ""))) *
-                          100,
-                        100
-                      )}%`,
-                    }}
-                  />
-                </div>
-              </CardContent>
-            </Card>
+    <AppLayout>
+      <div className="space-y-6 animate-fade-in">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <h1 className="text-2xl font-bold text-foreground">Collections</h1>
+          <Link
+            to="/collections/new"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold gradient-primary text-primary-foreground hover:opacity-90 transition-opacity"
+          >
+            <Plus className="h-4 w-4" />
+            New Collection
           </Link>
-        ))}
-        {filtered.length === 0 && (
-          <div className="text-center py-12">
-            <FolderOpen className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">No collections found</p>
+        </div>
+
+        {/* Search & Filter */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search collections..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pl-9"
+            />
           </div>
-        )}
+          <div className="flex gap-2">
+            {(["all", "active", "closed"] as const).map((f) => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`px-3 py-2 rounded-lg text-xs font-medium capitalize transition-colors ${filter === f
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-accent"
+                  }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Collection List */}
+        <div className="space-y-3">
+          {filtered.map((col) => (
+            <Link key={col.id} to={`/collections/${col.id}`}>
+              <Card className="shadow-card border-border hover:shadow-card-hover transition-shadow cursor-pointer mb-3">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="text-sm font-semibold text-foreground truncate">{col.name}</p>
+                        <Badge
+                          variant={col.status === "active" ? "default" : "secondary"}
+                          className={`text-[10px] ${col.status === "active" ? "bg-success text-success-foreground" : ""}`}
+                        >
+                          {col.status}
+                        </Badge>
+                      </div>
+                      <p className="text-xs text-muted-foreground">{col.description}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground mt-3">
+                    <span>{col.contributors} contributors</span>
+                    <span className="font-semibold text-foreground">{col.collected} / {col.target}</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden mt-2">
+                    <div
+                      className="h-full gradient-primary rounded-full"
+                      style={{
+                        width: `${Math.min(
+                          (parseInt(col.collected.replace(/[₦,]/g, "")) /
+                            parseInt(col.target.replace(/[₦,]/g, ""))) *
+                          100,
+                          100
+                        )}%`,
+                      }}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+          {filtered.length === 0 && (
+            <div className="text-center py-12">
+              <FolderOpen className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">No collections found</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

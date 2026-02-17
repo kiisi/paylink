@@ -33,10 +33,10 @@ export default function Dashboard() {
             <div className="space-y-10">
 
                 {/* HEADER */}
-                <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <div className="hidden lg:flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                     <div>
                         <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
-                            Dashboard
+                            Good morning, Kiisifelix
                         </h1>
                         <p className="text-sm text-gray-500 mt-1">
                             Track collections and monitor payments in real-time

@@ -3,7 +3,6 @@ import { LayoutDashboard, PlusCircle, Settings, LogOut, Link2, X, Menu, BellIcon
 import { useState } from "react";
 import Logo from "../logo";
 import { ChevronDownIcon, DashboardIcon, Layers01Icon, LayersIcon, LogoutIcon, MenuIcon, NotificationIcon, SettingsIcon, UserIcon, UserMultipleIcon } from "../svgs";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "~/lib/utils";
 
 
@@ -125,16 +124,39 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
   return (
     <div className={cn("w-full min-h-screen bg-background", className)}>
       {/* Top Navbar */}
-      <header className="-sticky -top-0 -z-50 border-b bg-card/80 backdrop-blur-md">
+      <header className="lg:sticky lg:top-0 z-50 border-b bg-card/80 backdrop-blur-md">
         <div className="flex h-18 items-center justify-between px-5">
-          <Logo />
+          <div className="hidden lg:block">
+            <Logo />
+          </div>
+          <button
+            className="cursor-pointer p-[10px] rounded-[32px] -bg-[#f4f5f6] flex lg:hidden items-center text-[#141517] gap-2"
+          >
+            <figure
+              onClick={() => setMobileOpen(previous => !previous)}
+              className="rounded-full h-[40px] w-[40px] shrink-0"
+            >
+              <img
+                src="/avatar.jpg"
+                alt="Profile"
+                className="rounded-full h-[40px] w-[40px] object-cover"
+              />
+            </figure>
+            <div
+              className="text-[14px] max-w-[90px] truncate text-left">
+              <p className="text-[12px] leading-[12px] mb-[4px] text-gray-500">
+                Good morning,
+              </p>
+              <h2 className="text-[17px] leading-[17px] font-medium">Kiisifelix</h2>
+            </div>
+          </button>
           <nav className="items-center gap-2 flex">
             <button className="cursor-pointer h-[50px] w-[50px] rounded-full bg-[#f4f5f6] grid place-items-center">
               <NotificationIcon />
             </button>
             <button
               onClick={() => setMobileOpen(previous => !previous)}
-              className="cursor-pointer p-[10px] rounded-[32px] bg-[#f4f5f6] flex items-center text-[#141517] gap-2"
+              className="cursor-pointer p-[10px] rounded-[32px] bg-[#f4f5f6] hidden lg:flex items-center text-[#141517] gap-2"
             >
               <figure className="rounded-full h-[30px] w-[30px] shrink-0">
                 <img
