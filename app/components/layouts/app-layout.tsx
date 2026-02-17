@@ -157,51 +157,52 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
       </header>
 
       {/* Mobile nav */}
-      <div
-        onClick={onClose}
-        className={`fixed w-full h-screen inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 touch-none z-[8888] ${open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-      />
 
-      {/* Sidebar Panel */}
-      <div
-        className={`fixed top-0 h-screen w-[260px] bg-white shadow-xl z-[9999] transform transition-all duration-300 ease-in-out ${open ? "left-0" : "left-[-260px]"
-          }`}
-      >
-        <div className="flex items-center justify-between px-5 py-[24px]">
-          <div />
-          <button
-            onClick={onClose}
-            className="h-[44px] w-[44px] rounded-full border border-[#e2e2e2] transition grid place-items-center"
-          >
-            <X size={20} />
-          </button>
-        </div>
-
-        <nav className="p-4 space-y-2">
-          {[
-            { label: "Dashboard", icon: <DashboardIcon />, link: "/dashboard" },
-            { label: "Collections", icon: <Layers01Icon />, link: "/collections" },
-            { label: "Contributors", icon: <UserMultipleIcon />, link: "/contributors" },
-            { label: "Profile", icon: <UserIcon />, link: "/profile" },
-            { label: "Settings", icon: <SettingsIcon />, link: "/settings" },
-            { label: "Logout", icon: <LogoutIcon />, link: "/logout" },
-          ].map((item, i) => (
+      <div className={cn("fixed inset-0 z-[7788]", open ? "visible" : "invisible")}>
+        <div
+          onClick={onClose}
+          className={`fixed w-full h-screen inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 touch-none z-[8888] ${open ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
+        />
+        <div
+          className={`fixed top-0 h-screen w-[260px] bg-white shadow-xl z-[9999] transform transition-all duration-300 ease-in-out ${open ? "left-0" : "left-[-260px]"
+            }`}
+        >
+          <div className="flex items-center justify-between px-5 py-[24px]">
+            <div />
             <button
-              onClick={() => {
-                onClose();
-                navigate(item.link);
-              }}
-              key={i}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+              onClick={onClose}
+              className="h-[44px] w-[44px] rounded-full border border-[#e2e2e2] transition grid place-items-center"
             >
-              <div className="w-[26px] h-[26px] grid place-items-center">
-                {item.icon}
-              </div>
-              <span className="text-sm font-medium">{item.label}</span>
+              <X size={20} />
             </button>
-          ))}
-        </nav>
+          </div>
+
+          <nav className="p-4 space-y-2">
+            {[
+              { label: "Dashboard", icon: <DashboardIcon />, link: "/dashboard" },
+              { label: "Collections", icon: <Layers01Icon />, link: "/collections" },
+              { label: "Contributors", icon: <UserMultipleIcon />, link: "/contributors" },
+              { label: "Profile", icon: <UserIcon />, link: "/profile" },
+              { label: "Settings", icon: <SettingsIcon />, link: "/settings" },
+              { label: "Logout", icon: <LogoutIcon />, link: "/logout" },
+            ].map((item, i) => (
+              <button
+                onClick={() => {
+                  onClose();
+                  navigate(item.link);
+                }}
+                key={i}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition"
+              >
+                <div className="w-[26px] h-[26px] grid place-items-center">
+                  {item.icon}
+                </div>
+                <span className="text-sm font-medium">{item.label}</span>
+              </button>
+            ))}
+          </nav>
+        </div>
       </div>
 
       {/* Bottom Navigation */}
@@ -230,7 +231,7 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
         )}
       </nav>
 
-      <div className="w-full px-5 pt-6 pb-[88px] lg:pb-6">
+      <div className="w-full px-5 pt-6 pb-[88px] lg:pb-10">
         {children}
       </div>
     </div>

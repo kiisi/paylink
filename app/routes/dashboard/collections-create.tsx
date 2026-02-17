@@ -89,15 +89,15 @@ export default function CollectionCreate() {
       </div>
       <form onSubmit={handleCreate} className="flex flex-col gap-5">
         <div className="">
-          <Label htmlFor="name" className="text-sm font-medium">Collection Name</Label>
+          <Label htmlFor="name" className="text-sm font-medium mb-2">Collection Name</Label>
           <Input id="name" placeholder="e.g. Class Dues — 400L" required />
         </div>
         <div className="">
-          <Label htmlFor="desc" className="text-sm font-medium">Description</Label>
+          <Label htmlFor="desc" className="text-sm font-medium mb-2">Description</Label>
           <Textarea id="desc" placeholder="What is this collection for?" rows={3} />
         </div>
         <div className="">
-          <Label className="text-sm font-medium">Amount Type</Label>
+          <Label className="text-sm font-medium mb-2">Amount Type</Label>
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
@@ -123,12 +123,12 @@ export default function CollectionCreate() {
         </div>
         {amountType === "fixed" && (
           <div className="">
-            <Label htmlFor="amount" className="text-sm font-medium">Amount (₦)</Label>
+            <Label htmlFor="amount" className="text-sm font-medium mb-2">Amount (₦)</Label>
             <Input id="amount" type="number" placeholder="5000" required />
           </div>
         )}
         <div className="">
-          <Label htmlFor="target" className="text-sm font-medium">Target Amount (₦) — Optional</Label>
+          <Label htmlFor="target" className="text-sm font-medium mb-2">Target Amount (₦) — Optional</Label>
           <Input id="target" type="number" placeholder="150000" />
         </div>
         <div className="flex items-center justify-between p-3 rounded-lg border border-border">
@@ -140,7 +140,7 @@ export default function CollectionCreate() {
         </div>
         {hasDeadline && (
           <div className="">
-            <Label htmlFor="deadline" className="text-sm font-medium">Deadline</Label>
+            <Label htmlFor="deadline" className="text-sm font-medium mb-2">Deadline</Label>
             <Input id="deadline" type="date" required />
           </div>
         )}
