@@ -38,7 +38,7 @@ const Login = () => {
     },
     onSuccess: (data) => {
       console.log("Login successful:", data);
-      // navigate("/dashboard");
+      navigate("/dashboard");
     },
   });
 
