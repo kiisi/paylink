@@ -98,7 +98,7 @@ const Signup = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background py-10 px-4">
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-xl sm:border sm:border-grey-500 sm:rounded-md sm:p-6">
         <div className='grid place-items-center'>
           <div className="block text-center text-2xl font-bold text-primary mb-8">
             <Logo size="large" />
@@ -109,7 +109,7 @@ const Signup = () => {
 
         <form onSubmit={formik.handleSubmit} className="mt-8 space-y-4">
           <div className='flex gap-4 flex-col sm:flex-row'>
-            <fieldset>
+            <fieldset className='flex-1'>
               <Label htmlFor="firstName">First Name</Label>
               <Input
                 id="firstName"
@@ -123,7 +123,7 @@ const Signup = () => {
                 </p>
               )}
             </fieldset>
-            <fieldset>
+            <fieldset className='flex-1'>
               <Label htmlFor="lastName">Last Name</Label>
               <Input
                 id="lastName"
