@@ -13,10 +13,9 @@ const navItems = [
 ];
 
 const bottomNavItems = [
-  { label: "Home", path: "/", icon: LayoutDashboard },
-  { label: "Collections", path: "/collections", icon: FolderOpen },
-  { label: "New", path: "/collections/new", icon: Plus, isAction: true },
-  { label: "Contributors", path: "/contributors", icon: Users },
+  { label: "Home", path: "/dashboard", icon: LayoutDashboard },
+  { label: "Collections", path: "/collections", icon: Layers01Icon },
+  { label: "New", path: "/collections/create", icon: Plus, isAction: true },
   { label: "Profile", path: "/profile", icon: User },
 ];
 
@@ -204,7 +203,7 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
             {[
               { label: "Dashboard", icon: <DashboardIcon />, link: "/dashboard" },
               { label: "Collections", icon: <Layers01Icon />, link: "/collections" },
-              { label: "Contributors", icon: <UserMultipleIcon />, link: "/contributors" },
+              // { label: "Contributors", icon: <UserMultipleIcon />, link: "/contributors" },
               { label: "Profile", icon: <UserIcon />, link: "/profile" },
               { label: "Settings", icon: <SettingsIcon />, link: "/settings" },
               { label: "Logout", icon: <LogoutIcon />, link: "/logout" },
@@ -243,7 +242,7 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
               key={item.path}
               to={item.path}
               end={item.path === "/"}
-              className={`flex flex-col items-center gap-0.5 text-[10px] font-medium py-1 ${isActive(item.path) ? "text-primary" : "text-muted-foreground"
+              className={`flex flex-col items-center gap-0.5 text-[11px] font-medium py-1 ${isActive(item.path) ? "text-primary" : "text-muted-foreground"
                 }`}
             >
               <item.icon className="h-5 w-5" />
@@ -251,6 +250,14 @@ const AppLayout = ({ children, className }: { children: React.ReactNode; classNa
             </NavLink>
           )
         )}
+        <div
+          onClick={() => setMobileOpen(true)}
+          className="flex flex-col text-muted-foreground items-center gap-0.5 text-[11px] font-medium py-1">
+          <MenuIcon
+            className="h-5 w-5"
+          />
+          More
+        </div>
       </nav>
 
       <div className="w-full px-5 pt-6 pb-[88px] lg:pb-10">

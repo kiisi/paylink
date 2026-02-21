@@ -36,9 +36,9 @@ const Login = () => {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="w-full max-w-sm">
         <div className='grid place-items-center'>
-          <Link to="/" className="block text-center text-2xl font-bold text-primary mb-8">
+          <div className="block text-center text-2xl font-bold text-primary mb-8">
             <Logo size="large" />
-          </Link>
+          </div>
         </div>
         <h1 className="text-xl font-semibold text-center">Welcome back</h1>
         <p className="text-sm text-muted-foreground text-center mt-1">Log in to manage your collections</p>

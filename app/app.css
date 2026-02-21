@@ -69,6 +69,9 @@ body {
   --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
   --shadow-elevated: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 20px 50px -12px rgba(0, 0, 0, 0.08);
+
+  --success: #1cca5b;
+  --error: #ef4343;
 }
 
 .dark {
@@ -122,6 +125,11 @@ body {
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+
+  --color-red: #ff3939;
+
+  --color-success: var(--success);
+  --color-error: var(--error);
 
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));

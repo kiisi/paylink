@@ -11,4 +11,6 @@ export default [
     route("/collections/create", "./routes/dashboard/collections-create.tsx"),
     route("/profile", "./routes/dashboard/profile.tsx"),
     route("/testing", "./routes/testing.tsx"),
+    // Catch-all route for non-existent paths
+    route("*", "./routes/not-found.tsx"),
 ] satisfies RouteConfig;
