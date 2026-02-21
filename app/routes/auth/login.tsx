@@ -6,35 +6,66 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import Logo from '~/components/logo';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { request } from '~/services/request';
+import { useMutation } from '@tanstack/react-query';
+import { cn } from '~/lib/utils';
+import { PasswordInput } from '~/components/ui/password-input';
+import { ErrorFeedback } from '~/components/toast';
+
+interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+const loginSchema = Yup.object({
+  email: Yup.string()
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required"),
+});
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  //   const { login } = useAuth();
+
   const navigate = useNavigate();
 
-  const validate = () => {
-    const e: typeof errors = {};
-    if (!email.trim()) e.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(email)) e.email = 'Enter a valid email';
-    if (!password) e.password = 'Password is required';
-    else if (password.length < 6) e.password = 'Minimum 6 characters';
-    setErrors(e);
-    return Object.keys(e).length === 0;
-  };
+  const { mutateAsync, isPending, isError, error } = useMutation({
+    mutationFn: async (data: LoginPayload) => {
+      const response = await request.post("/auth/login", data);
+      return response.data;
+    },
+    onSuccess: (data) => {
+      console.log("Login successful:", data);
+      // navigate("/dashboard");
+    },
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-    // login(email, password);
-    navigate('/dashboard');
-  };
+  const errorMessage =
+    (error as any)?.response?.data?.message ||
+    "An error occurred during login. Please try again.";
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        await mutateAsync(values);
+      } catch (err) {
+        // error handled via mutation state
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-xl sm:border sm:border-grey-500 sm:rounded-md sm:px-6 sm:py-10">
         <div className='grid place-items-center'>
           <div className="block text-center text-2xl font-bold text-primary mb-8">
             <Logo size="large" />
@@ -43,23 +74,58 @@ const Login = () => {
         <h1 className="text-xl font-semibold text-center">Welcome back</h1>
         <p className="text-sm text-muted-foreground text-center mt-1">Log in to manage your collections</p>
 
-        <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+        <form onSubmit={formik.handleSubmit} className="mt-8 space-y-4">
           <div>
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" className="mt-1" />
-            {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              {...formik.getFieldProps("email")}
+              className={cn(
+                "mt-1",
+                formik.touched.email &&
+                formik.errors.email &&
+                "border-destructive focus-visible:ring-destructive"
+              )}
+
+            />
+            {formik.touched.email && formik.errors.email && (
+              <p className="text-xs text-destructive mt-1">
+                {formik.errors.email}
+              </p>
+            )}
           </div>
           <div>
             <Label htmlFor="password">Password</Label>
-            <div className="relative mt-1">
-              <Input id="password" type={showPassword ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" />
-              <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
-            {errors.password && <p className="text-xs text-destructive mt-1">{errors.password}</p>}
+            <PasswordInput
+              id="password"
+              placeholder="Enter your password"
+              {...formik.getFieldProps("password")}
+              className={cn(
+                formik.touched.password &&
+                formik.errors.password &&
+                "border-destructive focus-visible:ring-destructive"
+              )}
+            />
+            {formik.touched.password && formik.errors.password && (
+              <p className="text-xs text-destructive mt-1">
+                {formik.errors.password}
+              </p>
+            )}
           </div>
-          <Button type="submit" className="w-full">Log In</Button>
+
+          {isError && (
+            <ErrorFeedback message={errorMessage} />
+          )}
+          <Button
+            type="submit"
+            disabled={isPending || !formik.isValid}
+            isLoading={isPending}
+            className="w-full mt-2"
+          >
+            Log In
+          </Button>
         </form>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
