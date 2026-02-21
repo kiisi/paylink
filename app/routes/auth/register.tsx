@@ -55,6 +55,8 @@ interface RegisterPayload {
 
 const Signup = () => {
 
+  const navigate = useNavigate();
+
   const { mutate, isError, error, isPending } = useMutation({
     mutationFn: async (data: RegisterPayload) => {
       const response = await request.post("/auth/register", data);
@@ -62,7 +64,7 @@ const Signup = () => {
     },
     onSuccess: (data, variables, onMutateResult) => {
       console.log("Registration successful:", data);
-      // navigate('/dashboard');
+      navigate('/dashboard');
     },
     onError: (error) => {
     },
