@@ -70,13 +70,10 @@ const Signup = () => {
     },
   });
 
-  const formError = error?.response?.data?.details?.errors
 
-  let errorMessage = 'An unknown error occurred';
-
-  if (error?.response?.data?.message) {
-    errorMessage = error.response.data.message;
-  }
+  const errorMessage =
+    (error as any)?.response?.data?.message ||
+    "An error occurred during registration. Please try again.";
 
   const formik = useFormik({
     initialValues: {
